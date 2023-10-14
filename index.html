@@ -7,7 +7,23 @@
     <title>Vite + TS</title>
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app">
+      <div class="container">
+        <h1>
+          <span id="weather">Weather</span> <span id="widget">Widget</span>
+        </h1>
+        <div class="search-bar">
+          <input type="text" />
+          <button>
+            <img src="./src/assets/search-svgrepo-com.svg" alt="" />
+          </button>
+        </div>
+        <div class="today-weather">
+          <h2>Selected:</h2>
+          <div class="weather-info"></div>
+        </div>
+      </div>
+    </div>
     <script type="module" src="./src/ts/main.ts"></script>
   </body>
 </html>
