@@ -1,5 +1,6 @@
 $regular-clr: #eee;
 $primary-clr: #333;
+$accent-clr: #46be46;
 
 * {
   margin: 0;
@@ -26,8 +27,6 @@ p {
   background-color: $primary-clr;
 
   .container{
-    // background-color: lightblue;
-
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -42,8 +41,8 @@ p {
       color: $regular-clr;
 
       #weather {
-        color: #46be46;
-        border-bottom: 0.15rem solid #46be46;
+        color: $accent-clr;
+        border-bottom: 0.15rem solid $accent-clr;
       }
 
       #widget {
@@ -70,6 +69,10 @@ p {
         background: transparent;
         outline: none;
         font-size: 1.2rem;
+
+        &::placeholder {
+          color: darken($regular-clr, 50%);
+        }
       }
 
       & > button {
@@ -90,6 +93,45 @@ p {
         & > img {
           width: 1.5rem;
         }
+      }
+    }
+
+    & > h2 {
+      color: darken($regular-clr, 25%);
+      font-weight: 400;
+      align-self: flex-start;
+      margin: 0 2rem;
+    }
+
+    .today-weather-info {
+      background: $accent-clr;
+      border: 0.15rem solid $regular-clr;
+      color: $regular-clr;
+
+      width: 100%;
+      border-radius: 1rem;
+
+      display: none;
+      align-items: center;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+
+      padding: 1rem;
+      font-size: 1.8rem;
+
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  #app {
+
+    .container {
+
+      .today-weather-info {
+        grid-template-columns: repeat(2, 1fr);
+        justify-items: center;
+        white-space: nowrap;
       }
     }
   }
