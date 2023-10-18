@@ -7,41 +7,41 @@ document.addEventListener('DOMContentLoaded', () => {
   const searchButton = document.getElementById('search-button');
   const searchInput = document.getElementById('search-input') as HTMLInputElement;
 
-  const todayWeatherInfo = document.querySelector('.today-weather-info') as HTMLDivElement;
+  const todayWeatherInfoContainer = document.querySelector('.today-weather-info-container') as HTMLDivElement;
 
-  const selectedCountryCity = document.querySelector('.country-city-selected') as HTMLSpanElement;
-  const temperature = document.querySelector('.temperature') as HTMLDivElement;
-  const feelsLike = document.querySelector('.feels-like') as HTMLDivElement;
-  const precipination = document.querySelector('.precipitation') as HTMLDivElement;
-  const countryCity = document.querySelector('.country-city') as HTMLDivElement;
+  function toHtml(data: any) {
+    const html = `
+    <h2>Selected: <span class="country-city-selected">${data.name}, ${data.sys.country}</span></h2>
+    <div class="today-weather-info">
+      <div class="temperature">${data.main.temp}°C</div>
+      <div class="precipitation">${data.weather[0].main}</div>
+      <div class="feels-like">Feels like: ${data.main.feels_like}°C</div>
+      <div class="country-city">${data.name}, ${data.sys.country}</div>
+    </div>
+    `
+
+    return html;
+  }
+
+  function displayWeatherInfo(html: any) {
+    todayWeatherInfoContainer.insertAdjacentHTML('afterbegin', html)
+  }
 
   function clearWeatherInfo() {
-    todayWeatherInfo.style.display = 'none';
-    selectedCountryCity.innerHTML = '';
-    temperature.innerHTML = '';
-    feelsLike.innerHTML = '';
-    precipination.innerHTML = '';
-    countryCity.innerHTML = '';
+    todayWeatherInfoContainer.innerHTML = '';
   }
 
   async function checkWeather(city: string) {
     const response = await fetch(apiUrl + `&q=${city}` + `&appid=${apiKey}`);
     let data = await response.json();
+    clearWeatherInfo();
 
     if (data.cod != 404 && data.cod != 400) {
       searchInput.placeholder = 'Search city';
+      displayWeatherInfo(toHtml(data))
 
-      todayWeatherInfo.style.display = 'grid';
-
-      selectedCountryCity.innerHTML = `${data.name}, ${data.sys.country}`;
-      temperature.innerHTML = `${data.main.temp}°C`;
-      feelsLike.innerHTML = `Feels like: ${data.main.feels_like}°C`;
-      precipination.innerHTML = `${data.weather[0].main}`;
-      countryCity.innerHTML = `${data.name}, ${data.sys.country}`;
     } else {
       searchInput.placeholder = 'City not found';
-
-      clearWeatherInfo();
     }
   }
 
