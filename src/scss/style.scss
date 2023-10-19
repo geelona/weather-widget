@@ -20,11 +20,12 @@ p {
 }
 
 #app {
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: $primary-clr;
+  padding: 2rem 0;
 
   .container{
     display: flex;
@@ -33,7 +34,7 @@ p {
     align-items: center;
     gap: 2rem;
     width: 100%;
-    max-width: 40rem;
+    max-width: 50rem;
     padding: 2rem 4rem;
 
     & > h1 {
@@ -115,16 +116,36 @@ p {
         color: $regular-clr;
   
         width: 100%;
-        border-radius: 1rem;
   
         display: grid;
         align-items: center;
         grid-template-columns: 1fr;
         gap: 1rem;
   
-        padding: 1rem;
+        padding: 2rem;
         font-size: 1.8rem;
-  
+
+        overflow-x: hidden;
+      }
+    }
+
+    .five-days-weather-info-container {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+
+      .five-days-element {
+        background: $regular-clr;
+        border: #46be46 0.2rem solid;
+        flex: 1;
+        padding: 1rem;
+        border-radius: 1rem;
+        white-space: nowrap;
+
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
       }
     }
   }
