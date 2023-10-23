@@ -1,7 +1,5 @@
 # Weather Widget
 
-![Weather Widget Preview](link-to-your-image.png)
-
 This is a simple weather widget that allows you to check the current weather and the weather forecast for the next 5 days in a specific city. The widget is built using Vite and can be easily launched by running `npm run dev`.
 
 ## Features
